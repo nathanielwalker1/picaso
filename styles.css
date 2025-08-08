@@ -1,0 +1,429 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.app {
+    min-height: 100vh;
+}
+
+.page {
+    display: none;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.order-description {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+/* Create Section */
+.create-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.prompt-input {
+    flex: 1;
+    padding: 1rem;
+    background-color: #8B7CF8;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.prompt-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.create-btn {
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.create-btn:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.create-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Featured Artwork */
+.featured-artwork {
+    display: flex;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: center;
+}
+
+.artwork-container {
+    flex: 1;
+}
+
+.featured-image {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.artwork-label {
+    text-align: center;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+.artwork-info {
+    flex: 1;
+}
+
+.artwork-info h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.shuffle-btn {
+    padding: 0.8rem 2rem;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.shuffle-btn:hover:not(:disabled) {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.shuffle-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.print-btn {
+    padding: 0.8rem 2rem;
+    background-color: #8B7CF8;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.print-btn:hover {
+    opacity: 0.9;
+}
+
+.delivery-time {
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+/* Recently Generated Section */
+.recently-generated {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.gallery-item {
+    text-align: center;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.gallery-item p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Checkout Styles */
+.checkout-content {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+.order-preview {
+    flex: 1;
+    text-align: center;
+}
+
+.order-image {
+    width: 100%;
+    max-width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.order-details {
+    flex: 1;
+}
+
+.product-specs {
+    margin-bottom: 2rem;
+}
+
+.product-specs p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-input {
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.form-input.purple {
+    background-color: #8B7CF8;
+    color: #ffffff;
+}
+
+.form-input.purple::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-input.small {
+    width: 48%;
+}
+
+.payment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-input {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.card-details {
+    display: flex;
+    gap: 1rem;
+}
+
+.delivery-select {
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.submit-btn {
+    padding: 1rem 2rem;
+    background-color: #8B7CF8;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+/* Confirmation Styles */
+.confirmation-content {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.confirmation-details {
+    flex: 1;
+}
+
+.confirmation-message {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.order-info {
+    margin-bottom: 2rem;
+}
+
+.order-info p:first-child {
+    margin-bottom: 0.5rem;
+}
+
+.order-number {
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.contact-info p:first-child {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page {
+        padding: 1rem;
+    }
+    
+    .logo {
+        font-size: 2rem;
+        letter-spacing: 0.3rem;
+    }
+    
+    .create-section {
+        flex-direction: column;
+    }
+    
+    .featured-artwork,
+    .checkout-content,
+    .confirmation-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-details {
+        flex-direction: column;
+    }
+    
+    .form-input.small {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+        letter-spacing: 0.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+        letter-spacing: 0.1rem;
+    }
+}

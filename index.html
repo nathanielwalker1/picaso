@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PICASO - Programmable Intelligence Creating Artistic Symphonies and Originals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Main Page -->
+        <div id="main-page" class="page active">
+            <header>
+                <h1 class="logo">P I C A S O</h1>
+                <p class="tagline">[Programmable Intelligence Creating Artistic Symphonies and Originals]</p>
+            </header>
+
+            <div class="create-section">
+                <input type="text" id="prompt-input" class="prompt-input" placeholder="a painting of a spaceship floating through space & time, in the style of picasso">
+                <button class="create-btn" onclick="handleCreate()">Create</button>
+            </div>
+
+            <div class="featured-artwork">
+                <div class="artwork-container">
+                    <img src="https://via.placeholder.com/400x300/8B7CF8/FFFFFF?text=Generated+Artwork" alt="Featured Artwork" class="featured-image">
+                    <p class="artwork-label">[your artwork]</p>
+                </div>
+                <div class="artwork-info">
+                    <h2>ART IS<br>EVOLVING YOU.</h2>
+                    <div class="action-buttons">
+                        <button class="shuffle-btn">Shuffle</button>
+                        <button class="print-btn" onclick="goToCheckout()">Print</button>
+                    </div>
+                    <p class="delivery-time">est. delivery time: 4 days</p>
+                </div>
+            </div>
+
+            <section class="recently-generated">
+                <h2 class="section-title">R E C E N T L Y   G E N E R A T E D</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/FF69B4/FFFFFF?text=Abstract+Art" alt="Abstract artwork">
+                        <p>a rothko painting depicting excitement & victory, using pink & purple as main colors</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/87CEEB/FFFFFF?text=Landscape" alt="Landscape artwork">
+                        <p>painting of old nice in france, with european buildings on a mountain over looking the sea</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Checkout Page -->
+        <div id="checkout-page" class="page">
+            <header>
+                <h1 class="page-title">C H E C K O U T</h1>
+                <p class="order-description">"a painting of a spaceship floating through space & time, in the style of picasso"</p>
+            </header>
+
+            <div class="checkout-content">
+                <div class="order-preview">
+                    <img src="https://via.placeholder.com/300x400/90EE90/FFFFFF?text=Your+Artwork" alt="Order Preview" class="order-image">
+                    <p class="artwork-label">[your artwork]</p>
+                </div>
+
+                <div class="order-details">
+                    <div class="product-specs">
+                        <p>12x12</p>
+                        <p>Matte Canvas</p>
+                        <p>Stretcher Bar</p>
+                        <p>PICASO style</p>
+                    </div>
+
+                    <form class="checkout-form">
+                        <div class="form-section">
+                            <input type="text" placeholder="your name" class="form-input purple">
+                            <input type="email" placeholder="your email" class="form-input purple">
+                            <input type="text" placeholder="your address" class="form-input purple">
+                            <input type="text" placeholder="your country" class="form-input purple">
+                        </div>
+
+                        <div class="payment-section">
+                            <div class="card-input">
+                                <div class="card-header">
+                                    <span class="card-icon">💳</span>
+                                    <span>Card</span>
+                                </div>
+                                <input type="text" placeholder="Card Number" class="form-input">
+                                <div class="card-details">
+                                    <input type="text" placeholder="MM/YY" class="form-input small">
+                                    <input type="text" placeholder="CVC" class="form-input small">
+                                </div>
+                            </div>
+                            <select class="delivery-select">
+                                <option>select delivery method</option>
+                                <option>Standard (5-7 days)</option>
+                                <option>Express (2-3 days)</option>
+                            </select>
+                        </div>
+
+                        <p class="delivery-time">est. delivery time: 5 days</p>
+                        <button type="button" class="submit-btn" onclick="goToConfirmation()">Bring Alive</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation Page -->
+        <div id="confirmation-page" class="page">
+            <header>
+                <h1 class="page-title">C O N F I R M A T I O N</h1>
+                <p class="order-description">"a painting of a spaceship floating through space & time, in the style of picasso"</p>
+            </header>
+
+            <div class="confirmation-content">
+                <div class="order-preview">
+                    <img src="https://via.placeholder.com/400x300/8B7CF8/FFFFFF?text=Your+Order" alt="Confirmed Order" class="order-image">
+                    <p class="artwork-label">[your artwork]</p>
+                </div>
+
+                <div class="confirmation-details">
+                    <p class="confirmation-message">Your order will be with you soon.</p>
+                    <div class="order-info">
+                        <p>Order confirmation:</p>
+                        <p class="order-number">##########</p>
+                    </div>
+                    <div class="contact-info">
+                        <p>For enquiries:</p>
+                        <p>picaso@terranova.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

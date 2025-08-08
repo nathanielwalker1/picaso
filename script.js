@@ -27,6 +27,8 @@ async function handleCreate() {
     try {
         // Call the image generation API
         console.log('Making API request to generate image...');
+        console.log('Prompt:', prompt);
+        
         const response = await fetch('/api/generate-image', {
             method: 'POST',
             headers: {
@@ -36,6 +38,7 @@ async function handleCreate() {
         });
         
         console.log('API response status:', response.status);
+        console.log('API response ok:', response.ok);
 
         const data = await response.json();
 

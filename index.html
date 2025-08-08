@@ -50,7 +50,44 @@
             </section>
         </div>
 
-        <!-- Checkout Page -->
+        <!-- Stripe Checkout Page -->
+        <div id="stripe-checkout-page" class="page">
+            <header>
+                <h1 class="page-title">C H E C K O U T</h1>
+                <p class="order-description">"your artwork"</p>
+            </header>
+
+            <div class="stripe-checkout-content">
+                <div class="order-preview">
+                    <img src="https://via.placeholder.com/400x300/8B7CF8/FFFFFF?text=Your+Artwork" alt="Your Artwork" class="stripe-order-image">
+                    <p class="artwork-label">[your artwork]</p>
+                </div>
+
+                <div class="product-details">
+                    <h3>Product Details:</h3>
+                    <ul class="product-specs-list">
+                        <li>✓ 12x12 inches</li>
+                        <li>✓ Matte Canvas</li>
+                        <li>✓ Stretcher Bar</li>
+                        <li>✓ PICASO Style</li>
+                        <li>✓ Premium Quality Print</li>
+                    </ul>
+                    
+                    <div class="price-section">
+                        <span class="price">$49.99</span>
+                        <span class="shipping">+ Free Shipping</span>
+                    </div>
+
+                    <button id="stripe-checkout-btn" class="stripe-checkout-btn">
+                        <span>🔒</span> Checkout with Stripe
+                    </button>
+                    
+                    <p class="secure-payment">Secure payment powered by Stripe</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Original Checkout Page (keep for form data) -->
         <div id="checkout-page" class="page">
             <header>
                 <h1 class="page-title">C H E C K O U T</h1>

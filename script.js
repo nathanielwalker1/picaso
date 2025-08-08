@@ -80,12 +80,17 @@ async function handleCreate() {
 }
 
 function goToCheckout() {
-    showPage('checkout-page');
+    showPage('stripe-checkout-page');
     
-    // Copy the current artwork to checkout page
+    // Copy the current artwork to Stripe checkout page
     const featuredImage = document.querySelector('.featured-image');
-    const checkoutImage = document.querySelector('#checkout-page .order-image');
-    checkoutImage.src = featuredImage.src;
+    const stripeOrderImage = document.querySelector('.stripe-order-image');
+    stripeOrderImage.src = featuredImage.src;
+    
+    // Update the order description
+    const currentPrompt = document.getElementById('prompt-input').value.trim();
+    const orderDescription = document.querySelector('#stripe-checkout-page .order-description');
+    orderDescription.textContent = `"${currentPrompt}"`;
 }
 
 function goToConfirmation() {
@@ -229,6 +234,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Stripe checkout functionality
+async function handleStripeCheckout() {
+    const featuredImage = document.querySelector('.featured-image');
+    const currentPrompt = document.getElementById('prompt-input').value.trim();
+    
+    if (!featuredImage.src || !currentPrompt) {
+        alert('Please generate an artwork first');
+        return;
+    }
+
+    const checkoutBtn = document.getElementById('stripe-checkout-btn');
+    const originalText = checkoutBtn.innerHTML;
+    
+    try {
+        checkoutBtn.innerHTML = '<span>⏳</span> Creating Checkout...';
+        checkoutBtn.disabled = true;
+
+        const response = await fetch('/api/create-checkout-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                imageUrl: featuredImage.src,
+                prompt: currentPrompt
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.url) {
+            // Redirect to Stripe Checkout
+            window.location.href = data.url;
+        } else {
+            throw new Error(data.error || 'Failed to create checkout session');
+        }
+
+    } catch (error) {
+        console.error('Error creating checkout:', error);
+        alert(`Error: ${error.message}`);
+        checkoutBtn.innerHTML = originalText;
+        checkoutBtn.disabled = false;
+    }
+}
+
 // Add some smooth animations
 function addLoadingAnimation(button) {
     const originalText = button.textContent;
@@ -276,5 +326,13 @@ document.addEventListener('DOMContentLoaded', loadFormData);
 document.addEventListener('input', function(e) {
     if (e.target.classList.contains('form-input')) {
         saveFormData();
+    }
+});
+
+// Add Stripe checkout button event listener
+document.addEventListener('DOMContentLoaded', function() {
+    const stripeCheckoutBtn = document.getElementById('stripe-checkout-btn');
+    if (stripeCheckoutBtn) {
+        stripeCheckoutBtn.addEventListener('click', handleStripeCheckout);
     }
 });

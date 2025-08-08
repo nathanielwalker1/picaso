@@ -343,6 +343,104 @@ header {
     opacity: 0.9;
 }
 
+/* Stripe Checkout Styles */
+.stripe-checkout-content {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.stripe-order-image {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.product-details {
+    flex: 1;
+    padding: 2rem;
+    background-color: rgba(139, 124, 248, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(139, 124, 248, 0.3);
+}
+
+.product-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.product-specs-list {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.product-specs-list li {
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.price-section {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #8B7CF8;
+    display: block;
+}
+
+.shipping {
+    font-size: 1rem;
+    color: #4CAF50;
+    margin-top: 0.5rem;
+}
+
+.stripe-checkout-btn {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, #8B7CF8, #6366F1);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.stripe-checkout-btn:hover {
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(139, 124, 248, 0.3);
+}
+
+.stripe-checkout-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.secure-payment {
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    color: #ffffff;
+}
+
 /* Confirmation Styles */
 .confirmation-content {
     display: flex;

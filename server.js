@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const OpenAI = require('openai');
+const Stripe = require('stripe');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +11,9 @@ const PORT = process.env.PORT || 3000;
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
+
+// Initialize Stripe
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Middleware
 app.use(express.json());
@@ -114,9 +118,103 @@ app.post('/api/generate-variation', async (req, res) => {
     }
 });
 
+// Stripe checkout endpoint
+app.post('/api/create-checkout-session', async (req, res) => {
+    try {
+        const { imageUrl, prompt } = req.body;
+        
+        console.log('Creating Stripe checkout session for:', prompt);
+
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [
+                {
+                    price_data: {
+                        currency: 'usd',
+                        product_data: {
+                            name: 'PICASO Custom Artwork Print',
+                            description: `"${prompt}" - 12x12 Matte Canvas with Stretcher Bar`,
+                            images: [imageUrl],
+                        },
+                        unit_amount: 4999, // $49.99 in cents
+                    },
+                    quantity: 1,
+                },
+            ],
+            mode: 'payment',
+            success_url: `${req.protocol}://${req.get('host')}/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${req.protocol}://${req.get('host')}/`,
+            metadata: {
+                prompt: prompt,
+                imageUrl: imageUrl
+            }
+        });
+
+        res.json({ url: session.url });
+    } catch (error) {
+        console.error('Error creating checkout session:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Success page endpoint
+app.get('/success', async (req, res) => {
+    try {
+        const sessionId = req.query.session_id;
+        const session = await stripe.checkout.sessions.retrieve(sessionId);
+        
+        // You can access the metadata here
+        const { prompt, imageUrl } = session.metadata;
+        
+        // Send success page HTML
+        res.send(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Payment Successful - PICASO</title>
+                <link rel="stylesheet" href="styles.css">
+            </head>
+            <body>
+                <div class="app">
+                    <div class="page active">
+                        <header>
+                            <h1 class="page-title">🎉 PAYMENT SUCCESSFUL!</h1>
+                            <p class="order-description">"${prompt}"</p>
+                        </header>
+                        <div class="confirmation-content">
+                            <div class="order-preview">
+                                <img src="${imageUrl}" alt="Your Artwork" class="order-image">
+                                <p class="artwork-label">[your artwork]</p>
+                            </div>
+                            <div class="confirmation-details">
+                                <p class="confirmation-message">Your order is confirmed! You'll receive an email with tracking details soon.</p>
+                                <div class="order-info">
+                                    <p>Order ID: ${sessionId}</p>
+                                    <p>Amount: $49.99</p>
+                                </div>
+                                <div class="contact-info">
+                                    <p>For enquiries:</p>
+                                    <p>picaso@terranova.com</p>
+                                </div>
+                                <br>
+                                <button onclick="window.location.href='/'" class="submit-btn">Create Another Artwork</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `);
+    } catch (error) {
+        console.error('Error retrieving session:', error);
+        res.redirect('/');
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`🎨 PICASO server running at http://localhost:${PORT}`);
     console.log('🤖 OpenAI integration ready');
+    console.log('💳 Stripe payments ready');
     console.log('Press Ctrl+C to stop the server');
 });
